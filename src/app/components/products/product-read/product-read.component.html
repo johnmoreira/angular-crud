@@ -15,7 +15,7 @@
         <td>{{ product.name }}</td>
         <td>{{ product.price | currency: 'BRL' }}</td>
         <td><a routerLink="/products/update/{{ product.id }}" class="edit">editar</a></td>
-        <td><a routerLink="" class="delete">excluir</a></td>
+        <td><a routerLink="/products/delete/{{ product.id }}" class="delete">excluir</a></td>
 
       </tbody>
     </table>

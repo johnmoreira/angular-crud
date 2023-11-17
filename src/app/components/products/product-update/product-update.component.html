@@ -1,19 +1,39 @@
 <div class="card">
-    <div class="card-header">Atualizar Produto</div>
-    <div class="card-body">
-        <form>
-        <!-- <form [formGroup]="form" (ngSubmit)="onSubmit()"> -->
-            <div class="form-group">
-              <label for="name">Nome do Produto</label>
-              <input class="form-control"  formControlName="name" id="prodNome"  placeholder="produto" >
-            </div>
-            <div class="form-group">
-              <label for="price">Preco</label>
-              <input class="form-control" formControlName="price" id="prodPreco" placeholder="9.99">
-            </div>
+  <div class="card-header">Atualizar Produto</div>
+  <div class="card-body">
+    <form [formGroup]="form">
+     
+      <div class="form-group">
+        <label>Nome do Produto</label>
+        <input class="form-control" formControlName="name" >
+      </div>
 
-            <button type="submit" class="btn btn-primary mr-2">Atualizar</button>
-            <button type="button" class="btn btn-secondary" (click)=cancel()>Cancel</button>
-          </form>
-    </div>
+      <div class="form-group">
+        <label for="price">Preco</label>
+        <input class="form-control" formControlName="price" >
+      </div>
+
+      <button type="submit" class="btn btn-primary mr-2">Atualizar</button>
+      <button type="button" class="btn btn-secondary" (click)=cancel()>Cancel</button>
+    </form>
   </div>
+</div>
+
+<!-- <div class="card">
+  <div class="card-header">Atualizar Produto</div>
+  <div class="card-body">
+    <form>
+      <div class="form-group">
+        <label for="name">Nome do Produto</label>
+        <input class="form-control" >
+      </div>
+      <div class="form-group">
+        <label for="price">Preco</label>
+        <input class="form-control">
+      </div>
+
+      <button type="submit" class="btn btn-primary mr-2">Atualizar</button>
+      <button type="button" class="btn btn-secondary" (click)=cancel()>Cancel</button>
+    </form>
+  </div>
+</div> -->
