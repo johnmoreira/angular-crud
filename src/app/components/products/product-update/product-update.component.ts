@@ -12,7 +12,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class ProductUpdateComponent implements OnInit {
 
   public form!: FormGroup;
-  product!: Product;
+  public product!: Product;
 
   constructor(
     private _productService: ProductService,
@@ -23,12 +23,13 @@ export class ProductUpdateComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    this._updateProduct();
+    this._createForm(this.product)
+    this._getProduct();
   }
 
-  public onSubmit(): void {
+  public updateProduct(): void {
     this._productService.update(this.form.value).subscribe(() => {
-      this._router.navigate(["/products"])
+      this.cancel()
     })
   }
   public cancel(): void {
@@ -40,19 +41,18 @@ export class ProductUpdateComponent implements OnInit {
   private _createForm(product: Product): void {
     this.product = product
     this.form = this._formBuilder.group({
-      name: [this.product.name],
-      price: [this.product.price]
+      id: [this.product ? this.product?.id : null],
+      name: [this.product ? this.product?.name : null],
+      price: [this.product ? this.product?.price : null]
     })
+    console.log(this.form.value)
   }
 
-  private _updateProduct(): void {
+  private _getProduct(): void {
     let id = this._route.snapshot.paramMap.get("id")
-    console.log(typeof (id), id)
     this._productService.readById(Number(id)).subscribe(product => {
       this.product = product
-      console.log(product)
       this._createForm(this.product)
-      console.log(this.form.get('name')?.value)
     });
   }
 }

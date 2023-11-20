@@ -1,18 +1,18 @@
 <div class="card">
     <div class="card-header">Excluir Produto</div>
     <div class="card-body">
-        <!-- <form>
+         <form [formGroup]="form">
             <div class="form-group">
                 <label for="name">Nome do Produto</label>
-                <input disabled class="form-control" >
+                <input  class="form-control" formControlName="name">
             </div>
             <div class="form-group">
                 <label for="price">Preco</label>
-                <input disabled class="form-control" [value]="product.price">
+                <input  class="form-control" formControlName="price">
             </div>
 
-            <button type="submit" class="btn btn-primary mr-2">Excluir</button>
+            <button type="submit" class="btn btn-primary mr-2" (click)="deleteProduct()">Excluir</button>
             <button type="button" class="btn btn-secondary" (click)=cancel()>Cancel</button>
-        </form> -->
+        </form>
     </div>
 </div>
