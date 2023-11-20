@@ -20,13 +20,13 @@ export class ProductUpdateComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _route: ActivatedRoute,
   ) {
-
+    
   }
   ngOnInit(): void {
     this._createForm(this.product)
     this._getProduct();
   }
-
+  
   public updateProduct(): void {
     this._productService.update(this.form.value).subscribe(() => {
       this.cancel()
@@ -37,14 +37,14 @@ export class ProductUpdateComponent implements OnInit {
   }
 
   /*************** METHODS PRIVATE ***************/
-
+  
   private _createForm(product: Product): void {
     this.product = product
     this.form = this._formBuilder.group({
-      id: [this.product ? this.product?.id : null],
-      name: [this.product ? this.product?.name : null],
-      price: [this.product ? this.product?.price : null]
-    })
+       id: [this.product ? this.product?.id : null],
+       name: [this.product ? this.product?.name : null],
+       price: [this.product ? this.product?.price : null]
+    });
     console.log(this.form.value)
   }
 

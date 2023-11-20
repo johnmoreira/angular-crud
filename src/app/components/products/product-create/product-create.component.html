@@ -1,18 +1,18 @@
-<div class="card" >
-    <div class="card-header">Cadastrar Produto</div>
-    <div class="card-body">
-        <form [formGroup]="form" >
-            <div class="form-group">
-              <label for="name">Nome do Produto</label>
-              <input class="form-control"  formControlName="name" id="prodNome"  placeholder="produto" >
-            </div>
-            <div class="form-group">
-              <label for="price">Preco</label>
-              <input class="form-control" formControlName="price" id="prodPreco" placeholder="9.99">
-            </div>
+<div class="card">
+  <div class="card-header">Cadastrar Produto</div>
+  <div class="card-body">
+    <form [formGroup]="form">
+      <div class="form-group">
+        <label for="name">Nome do Produto</label>
+        <input class="form-control" formControlName="name" id="prodNome" placeholder="produto" required>
+      </div>
+        <div class="form-group">
+          <label for="price">Preco</label>
+          <input class="form-control" formControlName="price" id="prodPreco" placeholder="9.99" required>
+        </div>
 
-            <button type="submit" class="btn btn-primary mr-2" (click)="onSubmit()">Salvar</button>
-            <button type="button" class="btn btn-secondary" (click)=reset()>Limpar</button>
-          </form>
-    </div>
+        <button type="submit" class="btn btn-primary mr-2" (click)="onSubmit()">Salvar</button>
+        <button type="button" class="btn btn-secondary" (click)=reset()>Limpar</button>
+    </form>
   </div>
+</div>

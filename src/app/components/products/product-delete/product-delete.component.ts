@@ -45,6 +45,7 @@ export class ProductDeleteComponent implements OnInit {
       name: [this.product ? this.product?.name : null],
       price: [this.product ? this.product?.price : null]
     })
+
   }
 
   private _getProduct(): void {
@@ -52,6 +53,7 @@ export class ProductDeleteComponent implements OnInit {
     this._productService.readById(Number(id)).subscribe(product => {
       this.product = product
       this._createForm(product)
+      this.form.disable()
     })
   }
 }

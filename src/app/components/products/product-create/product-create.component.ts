@@ -45,9 +45,9 @@ export class ProductCreateComponent implements OnInit {
   private _criarFormulario(product: Product): void {
     this.product = product
     this.form = this._formBuilder.group({
-      id: [this.product ? this.product?.id : null],
-      name: [this.product ? this.product?.name : null],
-      price: [this.product ? this.product?.price : null]
+      id: [null],
+      name: [null, Validators.required],
+      price: [null, Validators.required]
     })
   }
 }
