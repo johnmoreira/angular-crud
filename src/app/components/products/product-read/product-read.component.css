@@ -6,3 +6,12 @@
 .delete {
     color: #e25e6d;
 }
+
+.table button{
+    margin-right: 2px;
+}
+.table-image {
+    td, th {
+        vertical-align: middle;
+    }
+}
