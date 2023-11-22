@@ -17,6 +17,7 @@ import { ProductCreateComponent } from './components/products/product-create/pro
 import { ProductReadComponent } from './components/products/product-read/product-read.component';
 import { ProductUpdateComponent } from './components/products/product-update/product-update.component';
 import { ProductDeleteComponent } from './components/products/product-delete/product-delete.component';
+import { CurrencyPipe } from '@angular/common';
 
 
 
@@ -40,12 +41,14 @@ registerLocaleData(localePt)
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [{
     provide: LOCALE_ID,
     useValue: 'pt-BR'
-  }],
+  },
+  CurrencyPipe
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

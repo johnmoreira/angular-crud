@@ -28,6 +28,10 @@ export class ProductUpdateComponent implements OnInit {
   }
   
   public updateProduct(): void {
+
+    if(this.form.invalid){
+      return
+    }
     this._productService.update(this.form.value).subscribe(() => {
       this.cancel()
     })
@@ -36,6 +40,13 @@ export class ProductUpdateComponent implements OnInit {
     this._router.navigate(['/products'])
   }
 
+  get name() {
+    return this.form.get('name')!;
+  }
+
+  get price() {
+    return this.form.get('price')!;
+  }
   /*************** METHODS PRIVATE ***************/
   
   private _createForm(product: Product): void {

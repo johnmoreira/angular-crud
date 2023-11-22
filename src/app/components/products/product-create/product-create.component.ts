@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ProductService } from '../product.service';
 import { Router } from '@angular/router';
 import { Product } from '../product.model';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-create',
@@ -19,6 +20,7 @@ export class ProductCreateComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _productService: ProductService,
     private _router: Router,
+    private _currencyPipe: CurrencyPipe
   ) {
 
   }
@@ -28,10 +30,13 @@ export class ProductCreateComponent implements OnInit {
   }
 
   public onSubmit() {
+    if(this.form.invalid){
+      return
+    }
+
     this._productService.create(this.form.value).subscribe(() => {
-      console.log(this.form.value)
+      console.log(`salvou ${this.form.value}`)
       this._router.navigate(['/products'])
-      this.reset
     })
   }
 
@@ -39,15 +44,30 @@ export class ProductCreateComponent implements OnInit {
     this.form.reset();
   }
 
+  get name() {
+    return this.form.get('name')!;
+  }
+
+  get price() {
+    return this.form.get('price')!;
+  }
 
 /*************** METHODS PRIVATE ***************/
 
   private _criarFormulario(product: Product): void {
     this.product = product
     this.form = this._formBuilder.group({
-      id: [null],
-      name: [null, Validators.required],
-      price: [null, Validators.required]
+      id: [''],
+      name: ['', Validators.required],
+      price: ['', Validators.required]
     })
+
+    this.form.valueChanges.subscribe(form =>{
+      if(form.price) {
+        this.form.patchValue({
+          //price: this._currencyPipe.transform(form.price.replace(/\D/g, '').replace(/^0+/, ''), 'BRL', 'symbol', '1.0-0')
+          }, {emitEvent: false});
+      }
+    });
   }
 }
