@@ -12,7 +12,7 @@ export class AlertModalService {
   constructor( private _modalService: NgbModal) { }
   
 
-  showConfirm(title: string, msg: string, okTxt?: string, cancelTxt?: string) {
+  public showConfirm(title: string, msg: string, okTxt?: string, cancelTxt?: string): Promise<boolean> {
     modalRef = this._modalService.open(DialogModalComponent);
     modalRef.componentInstance.title = title;
     modalRef.componentInstance.msg = msg;
@@ -25,7 +25,6 @@ export class AlertModalService {
       modalRef.componentInstance.cancelTxt = cancelTxt;
     }
 
-    // return (<DialogModalComponent>modalRef.componentInstance).confirmResult;
-    return modalRef.result;
+    return modalRef.result
   }
 }

@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Subject } from 'rxjs';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-dialog-modal',
@@ -12,28 +11,19 @@ export class DialogModalComponent implements OnInit {
   @Input() msg!: string;
   @Input() cancelTxt = 'Cancelar';
   @Input() okTxt = 'Ok';
-  
-  public modal!: NgbModalRef 
-  
-  confirmResult!: Subject<boolean>;
 
-  constructor( ) {
+  constructor(private modal: NgbActiveModal ) {
    }
   
   ngOnInit(): void {
-    this.confirmResult = new Subject();
   }
 
-  onConfirm(){
-    this.confirmAndClose(true);
+  public onConfirm(){
+    this.modal.close(true);
   }
 
-  onClose(){
-    this.confirmAndClose(false);  
+  public onClose(){
+    this.modal.close(false);
   }
-
-  private confirmAndClose(value: boolean) {
-    this.confirmResult.next(value);
-    this.modal.close(value)
-  }
+  
 }
