@@ -11,7 +11,7 @@
       </div>
         <div class="form-group">
           <label for="price">Preco</label>
-          <input type="number" class="form-control" formControlName="price" id="prodPreco" placeholder="9.99" required>
+          <input  class="form-control" formControlName="price" id="prodPreco" placeholder="9.99" required>
         </div>
         <div *ngIf="price.invalid && formDir.submitted" class="validation-error">
           <p *ngIf="price.errors?.['required']">campo obrigatorio</p>

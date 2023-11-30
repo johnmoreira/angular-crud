@@ -39,6 +39,7 @@ export class ProductDeleteComponent implements OnInit {
         }
         EMPTY;
       })
+
   }
 
   public onCancel(): void {

@@ -1,3 +1,4 @@
+import { AlertModalService } from 'src/app/shared/alert-modal.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../product.service';
@@ -19,7 +20,8 @@ export class ProductCreateComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _productService: ProductService,
     private _router: Router,
-    private _currencyPipe: CurrencyPipe
+    private _currencyPipe: CurrencyPipe,
+    private _alertService: AlertModalService
   ) {
 
   }
@@ -33,7 +35,8 @@ export class ProductCreateComponent implements OnInit {
     }
 
     this._productService.create(this.form.value).subscribe(() => {
-      console.log(`salvou ${this.form.value}`)
+      // console.log(`salvou ${this.form.value}`)
+      this._alertService.showNotification('Alerta', 'Cadastrado com sucesso');
       this._router.navigate(['/products'])
     })
   }
@@ -62,6 +65,7 @@ export class ProductCreateComponent implements OnInit {
 
     this.form.valueChanges.subscribe(form =>{
       if(form.price) {
+        console.log('mudou')
         this.form.patchValue({
           //price: this._currencyPipe.transform(form.price.replace(/\D/g, '').replace(/^0+/, ''), 'BRL', 'symbol', '1.0-0')
           }, {emitEvent: false});

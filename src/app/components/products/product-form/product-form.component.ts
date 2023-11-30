@@ -3,7 +3,7 @@ import { ProductService } from './../product.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
-import { Location } from '@angular/common';
+import { CurrencyPipe, Location } from '@angular/common';
 
 @Component({
   selector: 'app-product-form',
@@ -20,6 +20,7 @@ export class ProductFormComponent implements OnInit {
     private _productService: ProductService,
     private _route: ActivatedRoute,
     private _router: Router,
+    private _currencyPipe: CurrencyPipe,
     private _location: Location,
   ) {
   }
@@ -85,6 +86,16 @@ export class ProductFormComponent implements OnInit {
         Validators.minLength(5),
         Validators.maxLength(100)
       ]],
+    });
+    
+    
+    this.form.valueChanges.subscribe(form =>{
+      if(form.price) {
+        console.log('mudou')
+        this.form.patchValue({
+          //price: this._currencyPipe.transform(form.price.replace(/\D/g, '').replace(/^0+/, ''), 'BRL', 'symbol', '1.0-0')
+        }, {emitEvent: false});
+      }
     });
   }
 }

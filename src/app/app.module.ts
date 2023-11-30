@@ -22,6 +22,7 @@ import { DialogModalComponent } from './shared/components/dialog-modal/dialog-mo
 import { ProductFormComponent } from './components/products/product-form/product-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NotificationComponent } from './shared/components/notification/notification.component';
 
 
 
@@ -42,6 +43,7 @@ registerLocaleData(localePt)
     ProductDeleteComponent,
     DialogModalComponent,
     ProductFormComponent,
+    NotificationComponent
     
     
   ],
