@@ -1,8 +1,8 @@
 <div class="card">
   <div class="card-header">Tabela de Produtos</div>
-  <div class="card-body table-responsive">
-    <table class="table" >
-      <thead >
+  <div class="card-body table-responsive table-sm table-hover ">
+    <table class="table" id="productTable">
+      <thead>
         <tr>
           <th scope="col">ID</th>
           <th scope="col">Nome</th>
@@ -10,15 +10,23 @@
           <th scope="col" colspan="2">Ações</th>
         </tr>
       </thead>
-      <tbody *ngFor="let product of products">
-        <th scope="row">{{ product.id }}</th>
-        <td>{{ product.name }}</td>
-        <td>{{ product.price | currency: 'BRL' }}</td>
-        <td><button type="button" routerLink="/products/update/{{ product.id }}" class="btn btn-success"><i class="bi bi-pencil-square"></i></button>
-        <button routerLink="/products/delete/{{ product.id }}"class="btn btn-danger"><i class="fas fa-edit"></i></button></td>
-
+      <tbody *ngFor="let product of products | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
+        <tr>
+          <th>{{ product.id }}</th>
+          <td>{{ product.name }}</td>
+          <td>{{ product.price | currency: 'BRL' }}</td>
+          <td>
+            <a type="button" (click)="onEdit(product)" class="btn mr-2"><i class="las la-edit icon-edit "></i></a>
+            <a (click)="onDelete(product)" class="btn"><i class="las la-trash-alt icon-delete"></i></a>
+          </td>
+        </tr>
       </tbody>
     </table>
+
   </div>
-  <div class="card-footer">itens</div>
+  <div class="card-footer">
+    <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize"
+    [collectionSize]="products.length" />
+    {{ products.length }} itens
+  </div>
 </div>

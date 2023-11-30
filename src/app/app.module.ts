@@ -18,6 +18,11 @@ import { ProductReadComponent } from './components/products/product-read/product
 import { ProductUpdateComponent } from './components/products/product-update/product-update.component';
 import { ProductDeleteComponent } from './components/products/product-delete/product-delete.component';
 import { CurrencyPipe } from '@angular/common';
+import { DialogModalComponent } from './shared/components/dialog-modal/dialog-modal.component';
+import { ProductFormComponent } from './components/products/product-form/product-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 
@@ -34,7 +39,10 @@ registerLocaleData(localePt)
     ProductCreateComponent,
     ProductReadComponent,
     ProductUpdateComponent,
-    ProductDeleteComponent
+    ProductDeleteComponent,
+    DialogModalComponent,
+    ProductFormComponent,
+    
     
   ],
   imports: [
@@ -42,6 +50,9 @@ registerLocaleData(localePt)
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    NgbModule,
+    
   ],
   providers: [{
     provide: LOCALE_ID,

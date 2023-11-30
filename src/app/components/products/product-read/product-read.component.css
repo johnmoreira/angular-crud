@@ -1,17 +1,15 @@
-
-.edit {
-    color: #D9CD26;
+.table {
+   width: 100%;
+   min-width: 420px;
+}
+.table i {
+   font-size: 20px;
 }
 
-.delete {
-    color: #e25e6d;
+.icon-edit {
+    color: blue;
 }
 
-.table button{
-    margin-right: 2px;
-}
-.table-image {
-    td, th {
-        vertical-align: middle;
-    }
+.icon-delete {
+    color: red;
 }

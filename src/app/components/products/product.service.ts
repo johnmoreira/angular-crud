@@ -14,6 +14,14 @@ export class ProductService {
 
   showMessage(msg: string): void { }
 
+  public save(record: Product) {
+    if (record.id) {
+      return this.update(record);
+    }
+    return this.create(record);
+  }
+
+
   public create(product: Product): Observable<Product> {
     return this.http.post<Product>(this.baseUrl, product).pipe(
       map((obj) => obj),

@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../product.service';
@@ -24,9 +23,8 @@ export class ProductCreateComponent implements OnInit {
   ) {
 
   }
-
   ngOnInit(): void {
-    this._criarFormulario(this.product)
+    this._createForm(this.product)
   }
 
   public onSubmit() {
@@ -54,7 +52,7 @@ export class ProductCreateComponent implements OnInit {
 
 /*************** METHODS PRIVATE ***************/
 
-  private _criarFormulario(product: Product): void {
+  private _createForm(product: Product): void {
     this.product = product
     this.form = this._formBuilder.group({
       id: [''],

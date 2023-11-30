@@ -7,7 +7,7 @@
         <input class="form-control" formControlName="name" id="prodNome" placeholder="produto" required>
       </div>
       <div *ngIf="name.invalid && formDir.submitted" class="validation-error">
-        <p *ngIf="name.errors?.['required']">campo obrigatorio</p>
+        <span *ngIf="name.errors?.['required']">campo obrigatorio</span>
       </div>
         <div class="form-group">
           <label for="price">Preco</label>
@@ -15,7 +15,6 @@
         </div>
         <div *ngIf="price.invalid && formDir.submitted" class="validation-error">
           <p *ngIf="price.errors?.['required']">campo obrigatorio</p>
-          <p *ngIf="price.errors?.['isANumber']">campo obrigatorio</p>
         </div>
 
         <button type="submit" class="btn btn-primary mr-2" (click)="onSubmit()">Salvar</button>

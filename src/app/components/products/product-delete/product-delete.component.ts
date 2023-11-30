@@ -3,6 +3,8 @@ import { ProductService } from '../product.service';
 import { Product } from './../product.model';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { AlertModalService } from 'src/app/shared/alert-modal.service';
+import { EMPTY, switchMap, take } from 'rxjs';
 
 @Component({
   selector: 'app-product-delete',
@@ -18,7 +20,8 @@ export class ProductDeleteComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _productService: ProductService,
     private _router: Router,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _alertService: AlertModalService
   ) { }
 
   ngOnInit(): void {
@@ -27,10 +30,22 @@ export class ProductDeleteComponent implements OnInit {
   }
 
   public deleteProduct(): void {
-    this._productService.delete(this.product.id).subscribe(() => {
-      this.cancel()
-    });
-  }
+    const result = this._alertService.showConfirm('Confirmação', 'tem certeza que deseja remover esse produto?', 'Sim');
+    // console.log(result$);
+    // result$
+    // // result$.asObservable()
+    // .pipe(
+    //   take(1),
+    //   switchMap(result => result ? this._productService.delete(this.product.id): EMPTY )
+    // )
+    // .subscribe(() => console.log('removido com sucesso!'));
+
+    result.then(
+      (result) => {
+        this._productService.delete(this.product.id)
+      }
+    )
+    }
 
   public cancel(): void {
     this._router.navigate(['/products'])
@@ -45,7 +60,6 @@ export class ProductDeleteComponent implements OnInit {
       name: [this.product ? this.product?.name : null],
       price: [this.product ? this.product?.price : null]
     })
-
   }
 
   private _getProduct(): void {
