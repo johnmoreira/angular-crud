@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Toast } from '../toast-model';
 
-
 @Injectable({
   providedIn: 'root'
 })
+
 export class ToastService {
 	toasts: Toast[] = [];
 

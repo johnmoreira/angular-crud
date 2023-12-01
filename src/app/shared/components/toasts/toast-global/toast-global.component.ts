@@ -10,7 +10,6 @@ export class ToastGlobalComponent implements OnDestroy {
 	toastService = inject(ToastService);
 
 	showStandard(template: TemplateRef<any>) {
-		
 		this.toastService.show({ template });
 	}
 

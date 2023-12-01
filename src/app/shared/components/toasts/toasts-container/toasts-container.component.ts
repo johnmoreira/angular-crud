@@ -1,8 +1,7 @@
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, TemplateRef, inject } from '@angular/core';
 import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastService } from '../services/toast.service';
-import { Toast } from '../toast-model';
 
 
 @Component({
@@ -14,5 +13,4 @@ import { Toast } from '../toast-model';
 })
 export class ToastsContainer {
 	toastService = inject(ToastService);
-	toast!: Toast;
 }
