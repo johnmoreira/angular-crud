@@ -18,11 +18,11 @@ import { ProductReadComponent } from './components/products/product-read/product
 import { ProductUpdateComponent } from './components/products/product-update/product-update.component';
 import { ProductDeleteComponent } from './components/products/product-delete/product-delete.component';
 import { CurrencyPipe } from '@angular/common';
-import { DialogModalComponent } from './shared/components/dialog-modal/dialog-modal.component';
 import { ProductFormComponent } from './components/products/product-form/product-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NotificationComponent } from './shared/components/notification/notification.component';
+import { ToastGlobalComponent } from './shared/components/toasts/toast-global/toast-global.component';
+import { ToastsContainer } from "./shared/components/toasts/toasts-container/toasts-container.component";
 
 
 
@@ -30,38 +30,35 @@ import { NotificationComponent } from './shared/components/notification/notifica
 registerLocaleData(localePt)
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    FooterComponent,
-    NavComponent,
-    HeaderComponent,
-    ProductCrudComponent,
-    ProductCreateComponent,
-    ProductReadComponent,
-    ProductUpdateComponent,
-    ProductDeleteComponent,
-    DialogModalComponent,
-    ProductFormComponent,
-    NotificationComponent
-    
-    
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    NgbModule,
-    
-  ],
-  providers: [{
-    provide: LOCALE_ID,
-    useValue: 'pt-BR'
-  },
-  CurrencyPipe
-],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        FooterComponent,
+        NavComponent,
+        HeaderComponent,
+        ProductCrudComponent,
+        ProductCreateComponent,
+        ProductReadComponent,
+        ProductUpdateComponent,
+        ProductDeleteComponent,
+        ProductFormComponent,
+        ToastGlobalComponent
+    ],
+    providers: [{
+            provide: LOCALE_ID,
+            useValue: 'pt-BR'
+        },
+        CurrencyPipe,
+    ],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        NgbModule,
+        ToastsContainer
+    ]
 })
 export class AppModule { }
