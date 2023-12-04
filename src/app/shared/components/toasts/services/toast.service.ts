@@ -6,9 +6,7 @@ import { Toast } from '../toast-model';
 })
 
 export class ToastService {
-	toasts: Toast[] = [
-		{title: 'titulo', message: 'mensagem', date: new Date()}
-	];
+	toasts: Toast[] = [];
 
 	show(toast: Toast) {
 		this.toasts.push(toast);

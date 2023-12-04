@@ -1,3 +1,4 @@
+import { ToastService } from './../../../shared/components/toasts/services/toast.service';
 import { FormUtilsService } from './../../../shared/form-utils.service';
 import { Product } from './../product.model';
 import { ProductService } from './../product.service';
@@ -23,7 +24,8 @@ export class ProductFormComponent implements OnInit {
     private _router: Router,
     private _currencyPipe: CurrencyPipe,
     private _location: Location,
-    public formUtils: FormUtilsService
+    public formUtils: FormUtilsService,
+    private _toastService: ToastService
   ) {
   }
 
@@ -49,14 +51,17 @@ export class ProductFormComponent implements OnInit {
   //     return
   //   }
   //   this._productService.save(this.form.value).subscribe(() => {
-  //     
+  //   this._router.navitage(['/products'])
   //   })
   // }
-
+  
   public onSubmit(): void {
-    if(this.form.valid){
+
+    if (this.form.valid) {
       this._productService.save(this.form.value)
-      .subscribe(result => this._router.navigate(['/products']));
+        .subscribe(
+          () => this.onSuccess()
+        )
     } else {
       this.formUtils.validateAllFormFields(this.form);
     }
@@ -80,6 +85,11 @@ export class ProductFormComponent implements OnInit {
 
   /*************** METHODS PRIVATE ***************/
 
+  public onSuccess(){
+      this._toastService.show({title: 'Sucesso', message:'Produto cadastrado com sucesso', date: new Date()})
+      this._router.navigate(['/products'])
+    }
+
   private _createForm(product: Product): void {
     this.product = product
     this.form = this._formBuilder.group({
@@ -100,15 +110,15 @@ export class ProductFormComponent implements OnInit {
         Validators.pattern('[0-9]+(?:\\.[0-9]+)?')
       ]],
     });
-    
-    
-    this.form.valueChanges.subscribe(form =>{
-      if(form.price) {
+
+
+    this.form.valueChanges.subscribe(form => {
+      if (form.price) {
         console.log('mudou')
         this.form.patchValue({
           //transforma o valor para o formato corrento
           //price: this._currencyPipe.transform(form.price.replace(/\D/g, '').replace(/^0+/, ''), 'BRL', 'symbol', '1.0-0')
-        }, {emitEvent: false}); 
+        }, { emitEvent: false });
       }
     });
   }

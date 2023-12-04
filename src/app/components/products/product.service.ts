@@ -1,3 +1,4 @@
+import { ToastService } from 'src/app/shared/components/toasts/services/toast.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable, catchError, map } from 'rxjs';
@@ -9,7 +10,7 @@ export class ProductService {
 
   baseUrl = "http://localhost:3001/products"
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toastService: ToastService) { }
 
   showMessage(msg: string): void { }
 
@@ -59,6 +60,7 @@ export class ProductService {
   }
 
   private errorHandler(e: any): Observable<any> {
+    this.toastService.show({title:'ERRO', message: 'Ocorreu um erro', date: new Date()})
     return EMPTY;
   }
 }

@@ -1,3 +1,6 @@
 <app-header></app-header>
 <app-nav></app-nav>
+<div *ngFor="let toast of toastService.toasts">
+    <app-toasts [title]="toast.title" [message]="toast.message" [date]="toast.date"></app-toasts>
+</div>
 <app-footer></app-footer>
