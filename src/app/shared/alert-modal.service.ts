@@ -11,7 +11,6 @@ export class AlertModalService {
 
   constructor( private _modalService: NgbModal) { }
 
-  
   public showConfirm(title: string, msg: string, okTxt?: string, cancelTxt?: string): Promise<boolean> {
     modalRef = this._modalService.open(DialogModalComponent);
     modalRef.componentInstance.title = title;

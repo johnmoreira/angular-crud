@@ -13,19 +13,13 @@ import { FooterComponent } from './components/template/footer/footer.component';
 import { NavComponent } from './components/template/nav/nav.component';
 import { HeaderComponent } from './components/template/header/header.component';
 import { ProductCrudComponent } from './view/product-crud/product-crud.component';
-import { ProductCreateComponent } from './components/products/product-create/product-create.component';
 import { ProductReadComponent } from './components/products/product-read/product-read.component';
-import { ProductUpdateComponent } from './components/products/product-update/product-update.component';
 import { ProductDeleteComponent } from './components/products/product-delete/product-delete.component';
 import { CurrencyPipe } from '@angular/common';
 import { ProductFormComponent } from './components/products/product-form/product-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ToastGlobalComponent } from './shared/components/toasts/toast-global/toast-global.component';
 import { ToastsContainer } from "./shared/components/toasts/toasts-container/toasts-container.component";
-
-
-
 
 registerLocaleData(localePt)
 
@@ -37,12 +31,9 @@ registerLocaleData(localePt)
         NavComponent,
         HeaderComponent,
         ProductCrudComponent,
-        ProductCreateComponent,
         ProductReadComponent,
-        ProductUpdateComponent,
         ProductDeleteComponent,
         ProductFormComponent,
-        ToastGlobalComponent
     ],
     providers: [{
             provide: LOCALE_ID,

@@ -1,4 +1,3 @@
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable, catchError, map } from 'rxjs';
@@ -16,19 +15,11 @@ export class ProductService {
 
   public save(record: Product) {
     if (record.id) {
-      return this.update(record);
+      return this._update(record);
     }
-    return this.create(record);
+    return this._create(record);
   }
 
-
-  public create(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.baseUrl, product).pipe(
-      map((obj) => obj),
-      catchError(e => this.errorHandler(e))
-    )
-  }
-  
   public read(): Observable<Product[]> {
     return this.http.get<Product[]>(this.baseUrl).pipe(
       map((obj) => obj),
@@ -43,14 +34,6 @@ export class ProductService {
       catchError(e => this.errorHandler(e))
     )
   }
-  
-  public update(Product: Product): Observable<Product> {
-    const url = `${this.baseUrl}/${Product.id}`
-    return this.http.put<Product>(url, Product).pipe(
-      map((obj) => obj),
-      catchError(e => this.errorHandler(e))
-    )
-  }
 
   public delete(id: number): Observable<Product> {
     const url = `${this.baseUrl}/${id}`;
@@ -60,7 +43,20 @@ export class ProductService {
     )
   }
 
-
+  /************** METHODS PRIVATE **************/
+  private _update(Product: Product): Observable<Product> {
+    const url = `${this.baseUrl}/${Product.id}`
+    return this.http.put<Product>(url, Product).pipe(
+      map((obj) => obj),
+      catchError(e => this.errorHandler(e))
+    )
+  }
+  private _create(product: Product): Observable<Product> {
+    return this.http.post<Product>(this.baseUrl, product).pipe(
+      map((obj) => obj),
+      catchError(e => this.errorHandler(e))
+    )
+  }
 
   private errorHandler(e: any): Observable<any> {
     return EMPTY;
