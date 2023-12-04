@@ -1,3 +1,4 @@
+import { FormUtilsService } from './../../../shared/form-utils.service';
 import { Product } from './../product.model';
 import { ProductService } from './../product.service';
 import { Component, OnInit } from '@angular/core';
@@ -22,6 +23,7 @@ export class ProductFormComponent implements OnInit {
     private _router: Router,
     private _currencyPipe: CurrencyPipe,
     private _location: Location,
+    public formUtils: FormUtilsService
   ) {
   }
 
@@ -42,13 +44,22 @@ export class ProductFormComponent implements OnInit {
     this._createForm(this.product);
   }
 
-  public onSubmit() {
-    if (this.form.invalid) {
-      return
+  // public onSubmit() {
+  //   if (this.form.invalid) {
+  //     return
+  //   }
+  //   this._productService.save(this.form.value).subscribe(() => {
+  //     
+  //   })
+  // }
+
+  public onSubmit(): void {
+    if(this.form.valid){
+      this._productService.save(this.form.value)
+      .subscribe(result => this._router.navigate(['/products']));
+    } else {
+      this.formUtils.validateAllFormFields(this.form);
     }
-    this._productService.save(this.form.value).subscribe(() => {
-      this._router.navigate(['/products']);
-    })
   }
 
   public onReset(): void {
@@ -83,8 +94,10 @@ export class ProductFormComponent implements OnInit {
       price: [this.product ? this.product.price : '',
       [
         Validators.required,
-        Validators.minLength(5),
-        Validators.maxLength(100)
+        Validators.minLength(1),
+        Validators.maxLength(20),
+        //Validators.pattern('^[0-9]*$'),
+        Validators.pattern('[0-9]+(?:\\.[0-9]+)?')
       ]],
     });
     
@@ -93,8 +106,9 @@ export class ProductFormComponent implements OnInit {
       if(form.price) {
         console.log('mudou')
         this.form.patchValue({
+          //transforma o valor para o formato corrento
           //price: this._currencyPipe.transform(form.price.replace(/\D/g, '').replace(/^0+/, ''), 'BRL', 'symbol', '1.0-0')
-        }, {emitEvent: false});
+        }, {emitEvent: false}); 
       }
     });
   }

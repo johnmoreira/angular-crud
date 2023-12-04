@@ -1,0 +1,10 @@
+.validation-error {
+    color: red;
+    padding-left: 18px;
+    margin-bottom: 5px;
+    margin: 0px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
