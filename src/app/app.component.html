@@ -1,6 +1,8 @@
 <app-header></app-header>
 <app-nav></app-nav>
-<div *ngFor="let toast of toastService.toasts">
-    <app-toasts [title]="toast.title" [message]="toast.message" [date]="toast.date"></app-toasts>
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div *ngFor="let toast of toastService.toasts">
+        <app-toasts [title]="toast.title" [message]="toast.message" [date]="toast.date"  (dismiss)='toastService.remove(toast)'></app-toasts>
+    </div>
 </div>
 <app-footer></app-footer>

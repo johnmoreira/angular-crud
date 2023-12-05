@@ -3,20 +3,20 @@
     <div class="card-body">
       <form [formGroup]="form" #formDir="ngForm">
         <div class="form-group">
-          <label for="name">Nome do Produto</label>
-          <input class="form-control" formControlName="name" id="prodNome" placeholder="produto" required>
+          <label for="prodNome">Nome do Produto</label>
+          <input class="form-control ng-untouched ng-pristine" formControlName="name" id="prodNome" placeholder="produto" required >
         </div>
         <div *ngIf="name.invalid && formDir.submitted" class="validation-error">
           <!-- <span *ngIf="name.errors?.['required']">campo obrigatorio</span> -->
-          <span *ngIf="form.get('name')?.invalid">{{ formUtils.getErrorMessage(form, 'name') }}</span>
+          <span *ngIf="form.get('name')?.invalid && form.get('name')?.touched">{{ formUtils.getErrorMessage(form, 'name') }}</span>
         </div>
           <div class="form-group">
-            <label for="price">Preco</label>
-            <input class="form-control" formControlName="price" id="prodPreco" placeholder="9.99" required>
+            <label for="prodPreco">Preco</label>
+            <input class="form-control ng-untouched ng-pristine" formControlName="price" id="prodPreco" placeholder="9.99" required>
           </div>
           <div *ngIf="price.invalid && formDir.submitted" class="validation-error">
             <!-- <p *ngIf="price.errors?.['required']">campo obrigatorio</p> -->
-            <span *ngIf="form.get('price')?.invalid">{{ formUtils.getErrorMessage(form, 'price') }}</span>
+            <span *ngIf="form.get('price')?.invalid && form.get('name')?.touched">{{ formUtils.getErrorMessage(form, 'price') }}</span>
           </div>
   
           <button type="submit" class="btn btn-primary mr-2" (click)=onSubmit()>Salvar</button>

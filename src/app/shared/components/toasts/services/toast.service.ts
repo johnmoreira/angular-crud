@@ -9,7 +9,7 @@ export class ToastService {
 	toasts: Toast[] = [];
 
 	show(toast: Toast) {
-		this.toasts.push(toast);
+		this.toasts.push(toast);	
 	}
 
 	remove(toast: Toast) {

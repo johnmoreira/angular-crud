@@ -1,5 +1,5 @@
 export interface Toast {
 	title: string;
 	message: string;
-	date?: Date;
+	date: Date;
 }
